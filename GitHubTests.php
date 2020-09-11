@@ -15,7 +15,7 @@ class GitHubTests extends TestCase {
   protected $webDriver;
 
 	public function setUp(): void {
-    echo "\n\nGot: '".getenv("SELENIUM_URL")."' for selenium url.".$_ENV['PHPUNIT_RESULT_CACHE']."\n";
+    echo "\n\nGot: '".getenv("SELENIUM_URL")."' for selenium url.\n";
     $this->webDriver = RemoteWebDriver::create('http://'.getenv("SELENIUM_URL").'/wd/hub', DesiredCapabilities::firefox());
   }
 
