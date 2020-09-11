@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-firefox:4.0.0-alpha-7-prerelease-20200907
+        ports:
+          - 4444:4444
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      uses: php-actions/composer@v2
+    - name: Run Tests
+      run: vendor/bin/phpunit GitHubTests.php
+      env:
+        SELENIUM_URL: selenium:4444
+
