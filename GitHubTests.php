@@ -15,8 +15,7 @@ class GitHubTests extends TestCase {
   protected $webDriver;
 
 	public function setUp(): void {
-    echo "\n\nGot: '".getenv("SELENIUM_URL")."' for selenium url.\n";
-    $this->webDriver = RemoteWebDriver::create('http://'.getenv("SELENIUM_URL").'/wd/hub', DesiredCapabilities::firefox());
+    $this->webDriver = RemoteWebDriver::create('http://localhost:4444/wd/hub', DesiredCapabilities::firefox());
   }
 
   public function tearDown(): void {
