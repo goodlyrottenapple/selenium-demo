@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       uses: php-actions/composer@v2
     - name: Run Tests
-      run: vendor/bin/phpunit GitHubTests.php
+      run: vendor/bin/phpunit --do-not-cache-result GitHubTests.php
       env:
         SELENIUM_URL: selenium:4444
 
