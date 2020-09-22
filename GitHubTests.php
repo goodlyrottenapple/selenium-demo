@@ -4,22 +4,16 @@
 // https://github.com/SeleniumHQ/docker-selenium
 
 namespace Facebook\WebDriver;
-
 use PHPUnit\Framework\TestCase;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
-
 
 class GitHubTests extends TestCase {
-
   protected $webDriver;
 
-	public function setUp(): void {
-    $this->webDriver = RemoteWebDriver::create('http://localhost:4444/wd/hub', DesiredCapabilities::firefox());
-  }
-
-  public function tearDown(): void {
-    $this->webDriver->quit();
+  public function setUp(): void {
+    $this->webDriver = Remote\RemoteWebDriver::create(
+      'http://localhost:4444/wd/hub', 
+      Remote\DesiredCapabilities::firefox()
+    );
   }
 
   protected $url = 'https://github.com';
@@ -57,6 +51,10 @@ class GitHubTests extends TestCase {
     $followers = $this->webDriver->findElement(WebDriverBy::cssSelector('a.no-wrap:nth-child(1) > span:nth-child(2)'))->getText();
     
     // must have more than 5 followers!!
-    $this->assertGreaterThan(5, intval($followers));
-	}
+    $this->assertGreaterThan(50, intval($followers));
+  }
+
+  public function tearDown(): void {
+    // $this->webDriver->quit();
+  }
 }
